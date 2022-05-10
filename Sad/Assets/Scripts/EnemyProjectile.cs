@@ -38,6 +38,7 @@ public class EnemyProjectile : MonoBehaviour
         if(collision.CompareTag("Player"))
         {
             DestroyProjectile();
+            collision.gameObject.GetComponent<Health>().TakeDamage(1);
         }
         else if(collision.CompareTag("Wall"))
         {

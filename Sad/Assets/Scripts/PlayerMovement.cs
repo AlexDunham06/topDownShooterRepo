@@ -29,4 +29,6 @@ public class PlayerMovement : MonoBehaviour
         float angle = Mathf.Atan2(lookDir.y, lookDir.x) * Mathf.Rad2Deg - 90f; //creates angle between x axis and lookDir vector
         rb.rotation = angle; //rotation = the angle we just made
     }
+
+  
 }
