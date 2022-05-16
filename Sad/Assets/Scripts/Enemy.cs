@@ -7,6 +7,7 @@ public class Enemy : MonoBehaviour
     public float enemySpeed;
     public float stoppingDistance;
     public float retreatDistance;
+    public float freezeDistance;
 
     public GameObject projectile;
     public Transform player;
@@ -27,7 +28,11 @@ public class Enemy : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(Vector2.Distance(transform.position, player.position) > stoppingDistance) //if the distance between enemy and player is bigger than stop
+        if (Vector2.Distance(transform.position, player.position) > freezeDistance)
+        {
+            transform.position = this.transform.position;
+        }
+        else if(Vector2.Distance(transform.position, player.position) > stoppingDistance && Vector2.Distance(transform.position, player.position) < freezeDistance)
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, enemySpeed * Time.deltaTime); //move enemy towards player
         }
@@ -39,6 +44,7 @@ public class Enemy : MonoBehaviour
         {
             transform.position = Vector2.MoveTowards(transform.position, player.position, -enemySpeed * Time.deltaTime);
         }
+       
 
 
         if (timeBtwShots <= 0) //if shot cooldown = 0

@@ -10,6 +10,8 @@ public class EnemyProjectile : MonoBehaviour
     public Transform player;
     private Vector2 target;
 
+    [SerializeField] private float shotKill;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -17,6 +19,13 @@ public class EnemyProjectile : MonoBehaviour
 
         target = new Vector2(player.position.x, player.position.y);
 
+        StartCoroutine(WaitAndDestroy(shotKill));
+    }
+
+    private IEnumerator WaitAndDestroy(float waitTime)
+    {
+        yield return new WaitForSeconds(waitTime);
+        Destroy(this.gameObject);
     }
 
 
